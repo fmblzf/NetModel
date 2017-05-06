@@ -1,12 +1,17 @@
 package com.example.fmblzf.netmodel;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
 
+import com.android.volley.Request;
+import com.android.volley.toolbox.StringRequest;
 import com.example.fmblzf.netmodel.origin.httpclient.HttpClientWraper;
 import com.example.fmblzf.netmodel.origin.urlconnect.HttpUrlConnectionWraper;
+import com.example.fmblzf.netmodel.volley.VolleyActivity;
+import com.example.fmblzf.netmodel.volley.VolleyWrapper;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -16,9 +21,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private TextView mHttpUrlGetTextView;
     private TextView mHttpUrlPostTextView;
 
+    private TextView mVolleyTextView;
+
     private HttpClientWraper mHttpClientWraper;
 
     private HttpUrlConnectionWraper mHttpUrlConnectionWraper;
+
+    private VolleyWrapper mVolleyWrapper;
 
 
     @Override
@@ -37,6 +46,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private void initObject() {
         mHttpClientWraper = HttpClientWraper.getInstance();
         mHttpUrlConnectionWraper = HttpUrlConnectionWraper.getInstance();
+        mVolleyWrapper = VolleyWrapper.getInstance();
     }
 
     /**
@@ -51,6 +61,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         mHttpUrlGetTextView.setOnClickListener(this);
         mHttpUrlPostTextView = (TextView) this.findViewById(R.id.http_url_post_click);
         mHttpUrlPostTextView.setOnClickListener(this);
+        mVolleyTextView = (TextView) this.findViewById(R.id.volley_click);
+        mVolleyTextView.setOnClickListener(this);
     }
 
     @Override
@@ -73,7 +85,20 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 //触发HttpURLConnection POST事件
                 clickHttpUrlPost();
                 break;
+            case R.id.volley_click:
+                //触发Volley事件
+                clickVolley();
+                break;
+
         }
+    }
+
+    /**
+     *  触发Volley事件
+     */
+    private void clickVolley() {
+        Intent intent = new Intent(this, VolleyActivity.class);
+        startActivity(intent);
     }
 
     /**

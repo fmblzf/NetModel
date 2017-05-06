@@ -1,0 +1,15 @@
+# Android/Java
+.gradle
+.idea
+build
+*.class
+*.iml
+gradle
+gradle.properties
+local.properties
+gradlew
+gradlew.*
+*/build
+*/libs
+*/*.iml
+

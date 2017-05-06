@@ -8,6 +8,7 @@ import android.widget.TextView;
 
 import com.android.volley.Request;
 import com.android.volley.toolbox.StringRequest;
+import com.example.fmblzf.netmodel.okhttp.OkHttpActivity;
 import com.example.fmblzf.netmodel.origin.httpclient.HttpClientWraper;
 import com.example.fmblzf.netmodel.origin.urlconnect.HttpUrlConnectionWraper;
 import com.example.fmblzf.netmodel.volley.VolleyActivity;
@@ -22,6 +23,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private TextView mHttpUrlPostTextView;
 
     private TextView mVolleyTextView;
+
+    private TextView mOkHttpTextView;
 
     private HttpClientWraper mHttpClientWraper;
 
@@ -63,6 +66,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         mHttpUrlPostTextView.setOnClickListener(this);
         mVolleyTextView = (TextView) this.findViewById(R.id.volley_click);
         mVolleyTextView.setOnClickListener(this);
+        mOkHttpTextView = (TextView) this.findViewById(R.id.okhttp_click);
+        mOkHttpTextView.setOnClickListener(this);
     }
 
     @Override
@@ -89,8 +94,15 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 //触发Volley事件
                 clickVolley();
                 break;
-
+            case R.id.okhttp_click:
+                clickOkHttp();
+                break;
         }
+    }
+
+    private void clickOkHttp() {
+        Intent intent = new Intent(this, OkHttpActivity.class);
+        startActivity(intent);
     }
 
     /**

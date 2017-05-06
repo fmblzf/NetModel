@@ -3,6 +3,8 @@
     package="com.example.fmblzf.netmodel">
 
     <uses-permission android:name="android.permission.INTERNET"></uses-permission>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"></uses-permission>
+    
 
     <application
         android:name=".BaseApplication"
@@ -23,6 +25,10 @@
             android:screenOrientation="portrait"
             android:launchMode="singleTask"
             ></activity>
+        <activity android:name=".okhttp.OkHttpActivity"
+            android:windowSoftInputMode="stateAlwaysHidden"
+            android:screenOrientation="portrait"
+            android:launchMode="singleTask"></activity>
     </application>
 
 </manifest>

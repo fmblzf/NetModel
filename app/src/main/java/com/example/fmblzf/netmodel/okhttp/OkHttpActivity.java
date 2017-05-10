@@ -23,6 +23,8 @@ public class OkHttpActivity extends AppCompatActivity implements View.OnClickLis
     private TextView mAysnTextView;
     private TextView mSyncTextView;
 
+    private TextView mPostTextView;
+
     private OkHttpWrapper mOkHttpWrapper;
 
     @Override
@@ -60,6 +62,9 @@ public class OkHttpActivity extends AppCompatActivity implements View.OnClickLis
                 }else if (what == 1001){
                     Log.i(TAG+"-SyncHttp",body);
                     Toast.makeText(OkHttpActivity.this,"SyncHttp",Toast.LENGTH_SHORT).show();
+                }else if(what == 1002){
+                    Log.i(TAG+"-PostHttp",body);
+                    Toast.makeText(OkHttpActivity.this,"PostHttp",Toast.LENGTH_SHORT).show();
                 }
                 return true;
             }
@@ -74,6 +79,8 @@ public class OkHttpActivity extends AppCompatActivity implements View.OnClickLis
         mAysnTextView.setOnClickListener(this);
         mSyncTextView = (TextView) this.findViewById(R.id.okhttp_sync);
         mSyncTextView.setOnClickListener(this);
+        mPostTextView = (TextView) this.findViewById(R.id.okhttp_post);
+        mPostTextView.setOnClickListener(this);
     }
 
     @Override
@@ -85,6 +92,9 @@ public class OkHttpActivity extends AppCompatActivity implements View.OnClickLis
                 break;
             case R.id.okhttp_sync:
                 mOkHttpWrapper.getSyncHttp();
+                break;
+            case R.id.okhttp_post:
+                mOkHttpWrapper.postHttp();
                 break;
         }
     }

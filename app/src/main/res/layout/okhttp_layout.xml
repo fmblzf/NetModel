@@ -23,5 +23,15 @@
         android:padding="5dp"
         android:layout_margin="5dp"
         />
+    <TextView
+        android:id="@+id/okhttp_post"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="OkHttp POST"
+        android:clickable="true"
+        android:background="@drawable/text_status_bg"
+        android:padding="5dp"
+        android:layout_margin="5dp"
+        />
 
 </LinearLayout>

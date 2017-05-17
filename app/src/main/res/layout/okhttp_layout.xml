@@ -33,5 +33,41 @@
         android:padding="5dp"
         android:layout_margin="5dp"
         />
+    <TextView
+        android:id="@+id/okhttp_upload"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="OkHttp 文件上传"
+        android:clickable="true"
+        android:background="@drawable/text_status_bg"
+        android:padding="5dp"
+        android:layout_margin="5dp"
+        />
+    <TextView
+        android:id="@+id/okhttp_download"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="OkHttp 图片下载"
+        android:clickable="true"
+        android:background="@drawable/text_status_bg"
+        android:padding="5dp"
+        android:layout_margin="5dp"
+        />
+    <TextView
+        android:id="@+id/okhttp_multipart"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="OkHttp 图文上传"
+        android:clickable="true"
+        android:background="@drawable/text_status_bg"
+        android:padding="5dp"
+        android:layout_margin="5dp"
+        />
+    <ImageView
+        android:id="@+id/down_show"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        />
 
 </LinearLayout>

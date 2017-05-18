@@ -16,6 +16,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.fmblzf.netmodel.R;
+import com.example.fmblzf.netmodel.okhttp.interceptors.OkHttpInterceptorWrap;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -43,9 +44,12 @@ public class OkHttpActivity extends AppCompatActivity implements View.OnClickLis
 
     private TextView mUploadFilesTextView;
 
+    private TextView mLogInterceptorTextView;
+
     private ImageView mDownShowView;
 
     private OkHttpWrapper mOkHttpWrapper;
+    private OkHttpInterceptorWrap mOkHttpInterceptorWrap;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -102,6 +106,7 @@ public class OkHttpActivity extends AppCompatActivity implements View.OnClickLis
                 return true;
             }
         });
+        mOkHttpInterceptorWrap = OkHttpInterceptorWrap.getInstance();
     }
 
     /**
@@ -122,6 +127,8 @@ public class OkHttpActivity extends AppCompatActivity implements View.OnClickLis
         mMultipartTextView.setOnClickListener(this);
         mUploadFilesTextView = (TextView) this.findViewById(R.id.okhttp_uploadfiles);
         mUploadFilesTextView.setOnClickListener(this);
+        mLogInterceptorTextView = (TextView) this.findViewById(R.id.okhttp_log_interceptor);
+        mLogInterceptorTextView.setOnClickListener(this);
 
         mDownShowView = (ImageView) this.findViewById(R.id.down_show);
 
@@ -152,6 +159,9 @@ public class OkHttpActivity extends AppCompatActivity implements View.OnClickLis
                 break;
             case R.id.okhttp_uploadfiles:
                 mOkHttpWrapper.uploadFiles( new String[]{path+"/"+"upload.txt",path+"/"+"upload1.txt",path+"/"+"upload2.txt",path+"/"+"upload3.txt",path+"/"+"upload4.txt",path+"/"+"upload5.txt"},new String[]{"upload.txt","upload1.txt","upload2.txt","upload3.txt","upload4.txt","upload5.txt"});
+                break;
+            case R.id.okhttp_log_interceptor:
+                mOkHttpInterceptorWrap.logInterceptor();
                 break;
         }
     }

@@ -41,6 +41,8 @@ public class OkHttpActivity extends AppCompatActivity implements View.OnClickLis
 
     private TextView mMultipartTextView;
 
+    private TextView mUploadFilesTextView;
+
     private ImageView mDownShowView;
 
     private OkHttpWrapper mOkHttpWrapper;
@@ -56,7 +58,12 @@ public class OkHttpActivity extends AppCompatActivity implements View.OnClickLis
         //初始化对象
         initObject();
         //创建测试文件
-        createFile(path,"upload.txt");
+        createFile(path,"upload.txt",null);
+        createFile(path,"upload1.txt","测试多文件上传1");
+        createFile(path,"upload2.txt","测试多文件上传2");
+        createFile(path,"upload3.txt","测试多文件上传3");
+        createFile(path,"upload4.txt","测试多文件上传4");
+        createFile(path,"upload5.txt","测试多文件上传5");
     }
 
     /**
@@ -113,6 +120,8 @@ public class OkHttpActivity extends AppCompatActivity implements View.OnClickLis
         mDownLoadTextView.setOnClickListener(this);
         mMultipartTextView = (TextView) this.findViewById(R.id.okhttp_multipart);
         mMultipartTextView.setOnClickListener(this);
+        mUploadFilesTextView = (TextView) this.findViewById(R.id.okhttp_uploadfiles);
+        mUploadFilesTextView.setOnClickListener(this);
 
         mDownShowView = (ImageView) this.findViewById(R.id.down_show);
 
@@ -141,6 +150,9 @@ public class OkHttpActivity extends AppCompatActivity implements View.OnClickLis
                 String filePath = Environment.getExternalStorageDirectory()+"/download/download.jpeg";
                 mOkHttpWrapper.uploadMultipart(filePath);
                 break;
+            case R.id.okhttp_uploadfiles:
+                mOkHttpWrapper.uploadFiles( new String[]{path+"/"+"upload.txt",path+"/"+"upload1.txt",path+"/"+"upload2.txt",path+"/"+"upload3.txt",path+"/"+"upload4.txt",path+"/"+"upload5.txt"},new String[]{"upload.txt","upload1.txt","upload2.txt","upload3.txt","upload4.txt","upload5.txt"});
+                break;
         }
     }
 
@@ -149,7 +161,7 @@ public class OkHttpActivity extends AppCompatActivity implements View.OnClickLis
      * @param path
      * @param fileName
      */
-    private void createFile(String path,String fileName){
+    private void createFile(String path,String fileName,String content){
         File file = new File(path+"/"+fileName);
         File parentFile = file.getParentFile();
         if (!parentFile.exists()){
@@ -168,6 +180,9 @@ public class OkHttpActivity extends AppCompatActivity implements View.OnClickLis
         try {
             outputStream = new FileOutputStream(file);
             String dec = "测试Python服务器文件上传功能";
+            if(content != null){
+                dec = content;
+            }
             byte[] bytes = dec.getBytes();
             outputStream.write(bytes);
             outputStream.flush();

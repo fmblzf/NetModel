@@ -13,6 +13,8 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 import okhttp3.Cache;
@@ -238,7 +240,7 @@ public class OkHttpWrapper {
             e.printStackTrace();
         }
         String data = jsonObject.toString();
-        RequestBody requestBody = new MultipartBody.Builder().setType(MultipartBody.FORM).addFormDataPart("data",data).addFormDataPart("file","china.jpg",
+        RequestBody requestBody = new MultipartBody.Builder().setType(MultipartBody.FORM).addFormDataPart("data",data).addFormDataPart("files","china.jpg",
                 RequestBody.create(MEDIA_TYPE_PNG,new File(fileUrl))
                 ).build();
         final Request request = new Request.Builder().addHeader("Authorization", "Client-ID " + "...").url("http://10.0.6.82:8089/webapp/multipart.do").post(requestBody).build();
@@ -255,6 +257,37 @@ public class OkHttpWrapper {
             }
         });
     }
+
+    /**
+     * 上传多文件
+     * @param files
+     */
+    public void uploadFiles(String[] files,String[] fileNames){
+        OkHttpClient okHttpClient = getOkHttpClient();
+        /* form的分割线,自己定义 */
+        String boundary = "xx--------------------------------------------------------------xx";
+        MultipartBody.Builder builder = new MultipartBody.Builder(boundary).setType(MultipartBody.FORM);
+        for (int i = 0 ; i < files.length ; i++){
+            builder.addFormDataPart("files",fileNames[i],RequestBody.create(MediaType.parse("application/octet-stream") , new File(files[i])));
+        }
+        MultipartBody multipartBody = builder.build();
+
+        Request request = new Request.Builder().url("http://10.0.6.82:8089/webapp/upload.do").post(multipartBody).build();
+        Call call = okHttpClient.newCall(request);
+        call.enqueue(new Callback() {
+            @Override
+            public void onFailure(Call call, IOException e) {
+                Log.e(TAG,e.getMessage());
+            }
+
+            @Override
+            public void onResponse(Call call, Response response) throws IOException {
+                Log.i(TAG,response.body().string());
+            }
+        });
+    }
+
+
 
     /**
      * 设置OkHttpClient的参数，并且返回对应的实例

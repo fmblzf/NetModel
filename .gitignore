@@ -10,6 +10,8 @@ local.properties
 gradlew
 gradlew.*
 */build
-*/libs
 */*.iml
 
+app/src/main/java/com/example/fmblzf/netmodel/retrofit/
+projectFilesBackup/
+libs/JavaMD5.jar

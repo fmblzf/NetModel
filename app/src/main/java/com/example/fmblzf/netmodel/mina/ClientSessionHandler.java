@@ -1,5 +1,7 @@
 package com.example.fmblzf.netmodel.mina;
 
+import android.os.Looper;
+import android.os.Process;
 import android.util.Log;
 
 import org.apache.mina.core.service.IoHandlerAdapter;
@@ -18,8 +20,12 @@ class ClientSessionHandler extends IoHandlerAdapter {
     @Override
     public void messageReceived(IoSession session, Object message) throws Exception {
         String result = message.toString();
-        Log.d("ClientSessionHandler",result);
-        session.closeNow();
+        Log.i("ClientSessionHandler",result);
+        if (Looper.getMainLooper().getThread().getId() == Thread.currentThread().getId()){
+            //
+        }
+        Log.i("ClientSessionHandler", "myPid = "+Process.myPid()+";myTid = "+Process.myTid()+";myUid = "+Process.myUid());
+        //session.closeNow();
     }
 
     @Override

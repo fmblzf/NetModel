@@ -8,6 +8,7 @@ import android.widget.TextView;
 
 import com.android.volley.Request;
 import com.android.volley.toolbox.StringRequest;
+import com.example.fmblzf.netmodel.mina.MinaOpActivity;
 import com.example.fmblzf.netmodel.okhttp.OkHttpActivity;
 import com.example.fmblzf.netmodel.origin.httpclient.HttpClientWraper;
 import com.example.fmblzf.netmodel.origin.urlconnect.HttpUrlConnectionWraper;
@@ -25,6 +26,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private TextView mVolleyTextView;
 
     private TextView mOkHttpTextView;
+
+    private TextView mMinaTextView;
 
     private HttpClientWraper mHttpClientWraper;
 
@@ -68,6 +71,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         mVolleyTextView.setOnClickListener(this);
         mOkHttpTextView = (TextView) this.findViewById(R.id.okhttp_click);
         mOkHttpTextView.setOnClickListener(this);
+        mMinaTextView = (TextView) this.findViewById(R.id.mina_click);
+        mMinaTextView.setOnClickListener(this);
     }
 
     @Override
@@ -97,9 +102,23 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             case R.id.okhttp_click:
                 clickOkHttp();
                 break;
+            case R.id.mina_click:
+                clickMina();
+                break;
         }
     }
 
+    /**
+     *  跳转到Mina功能界面
+     */
+    private void clickMina() {
+        Intent intent = new Intent(this, MinaOpActivity.class);
+        startActivity(intent);
+    }
+
+    /**
+     *  跳转OkHttp功能界面
+     */
     private void clickOkHttp() {
         Intent intent = new Intent(this, OkHttpActivity.class);
         startActivity(intent);

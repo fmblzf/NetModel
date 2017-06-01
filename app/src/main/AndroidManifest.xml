@@ -30,6 +30,10 @@
             android:windowSoftInputMode="stateAlwaysHidden"
             android:screenOrientation="portrait"
             android:launchMode="singleTask"></activity>
+        <activity android:name=".mina.MinaOpActivity"
+            android:windowSoftInputMode="stateAlwaysHidden"
+            android:screenOrientation="portrait"
+            android:launchMode="singleTask"></activity>
     </application>
 
 </manifest>
